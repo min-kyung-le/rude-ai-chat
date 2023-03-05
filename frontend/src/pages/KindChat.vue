@@ -41,7 +41,6 @@ export default defineComponent({
 .chat-div {
   height: 500px;
 }
-
 .chat-text {
   max-height: 10px;
 }
