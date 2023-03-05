@@ -72,4 +72,8 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped></style>
+<style scoped>
+.chatbg {
+  height: 100%;
+}
+</style>

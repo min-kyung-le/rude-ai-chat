@@ -1,5 +1,5 @@
 <template>
-  <div><v-icon>mdi-chat</v-icon> 4가지 없는 AI 챗봇</div>
+  <div></div>
 </template>
 
 <script lang="ts">
