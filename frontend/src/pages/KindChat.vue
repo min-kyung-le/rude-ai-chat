@@ -28,6 +28,7 @@ export default defineComponent({
   methods: {
     sendChat() {
       console.log(this.inputText);
+      this.inputText = "";
     },
   },
 });
