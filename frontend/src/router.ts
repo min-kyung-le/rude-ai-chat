@@ -3,8 +3,8 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes = [
   {
     path: "/",
-    name: "Movies",
-    component: () => import("./pages/Movies.vue"),
+    name: "Chat",
+    component: () => import("./pages/Chat.vue"),
   },
 ];
 
