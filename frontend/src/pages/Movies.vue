@@ -45,7 +45,7 @@ export default defineComponent({
   },
   methods: {
     movieInfo(id: number): object {
-      return this.$http.get("/api/movies/" + id).then((response) => {
+      return this.$http.get(`/api/movies/${id}`).then((response) => {
         this.moviesInfo = response.data[0];
       });
     },
