@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "KindChat",
+  name: "MovieChat",
   data() {
     return {
       showChat: [] as Array<String>,
@@ -29,7 +29,7 @@ export default defineComponent({
       this.showChat.unshift("You: " + this.inputText);
       try {
         this.$http
-          .post("/api/generate", { name: "KindChat", data: this.inputText })
+          .post("/api/generate", { name: "MovieChat", data: this.inputText })
           .then((res) => {
             this.showChat.unshift("AI:" + res.data.result);
           });

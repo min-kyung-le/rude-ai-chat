@@ -13,7 +13,7 @@
     <v-main class="bg-teal-darken-1">
       <v-container>
         <v-row>
-          <v-col cols="2">
+          <v-col cols="3">
             <v-sheet rounded="lg">
               <v-list rounded="lg" class="bg-teal-lighten-4">
                 <v-list-item
@@ -46,11 +46,13 @@
 import { defineComponent } from "vue";
 import RudeChat from "@/pages/RudeChat.vue";
 import KindChat from "@/pages/KindChat.vue";
+import MovieChat from "@/pages/MovieChat.vue";
 
 export default defineComponent({
   components: {
     RudeChat,
     KindChat,
+    MovieChat,
   },
   data: () => ({
     title: "예의바른 버전",
@@ -63,6 +65,10 @@ export default defineComponent({
       {
         name: "4가지없는 버전",
         id: "RudeChat",
+      },
+      {
+        name: "영화제목을 이모티콘으로",
+        id: "MovieChat",
       },
     ],
   }),

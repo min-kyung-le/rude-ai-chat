@@ -26,12 +26,12 @@ export default defineComponent({
   },
   methods: {
     sendChat(): void {
-      this.showChat.unshift(this.inputText);
+      this.showChat.unshift("You: " + this.inputText);
       try {
         this.$http
           .post("/api/generate", { name: "RudeChat", data: this.inputText })
           .then((res) => {
-            this.showChat.unshift(res.data.result);
+            this.showChat.unshift("AI:" + res.data.result);
           });
         this.inputText = "";
       } catch (error) {

@@ -14,21 +14,46 @@ async function generate(req, res) {
     return;
   }
   const getData = req.body.data || "";
+  const getName = req.body.name || "";
   if (getData.trim().length === 0) {
     console.log("Please enter a valid getData");
     return;
   }
-
+  let completion;
   try {
-    const completion = openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: generatePrompt(req.body.name, getData),
-      temperature: 0.5,
-      max_tokens: 60,
-      top_p: 0.3,
-      frequency_penalty: 0.5,
-      presence_penalty: 0,
-    });
+    if (getName == "RudeChat") {
+      completion = openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: rudePrompt(getData),
+        temperature: 0.5,
+        max_tokens: 60,
+        top_p: 0.3,
+        frequency_penalty: 0.5,
+        presence_penalty: 0,
+      });
+    } else if (getName == "KindChat") {
+      completion = openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: kindPrompt(getData),
+        temperature: 0,
+        max_tokens: 60,
+        top_p: 1.0,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0,
+      });
+    } else if (getName == "MovieChat") {
+      completion = openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: moviePrompt(getData),
+        temperature: 0.8,
+        max_tokens: 60,
+        top_p: 1.0,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0,
+        stop: ["\n"],
+      });
+    }
+
     return { result: (await completion).data.choices[0].text };
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
@@ -42,10 +67,10 @@ async function generate(req, res) {
   }
 }
 
-function generatePrompt(page, data) {
+function rudePrompt(data) {
   const capitalizedData = data[0].toUpperCase() + data.slice(1).toLowerCase();
 
-  const rudeVersion = `Marv is a chatbot that reluctantly answers questions with sarcastic responses:
+  return `Marv is a chatbot that reluctantly answers questions with sarcastic responses:
 
   You: How many pounds are in a kilogram?
   Marv: This again? There are 2.2 pounds in a kilogram. Please make a note of this.
@@ -57,26 +82,45 @@ function generatePrompt(page, data) {
   Marv: I’m not sure. I’ll ask my friend Google.
   You: ${capitalizedData}
   Marv:`;
+}
 
-  const kindVersion = `I am a highly intelligent question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with \"Unknown\".\n\n
-  Q: What is human life expectancy in the United States?
-  A: Human life expectancy in the United States is 78 years.
-  Q: Who was president of the United States in 1955?
-  A: Dwight D. Eisenhower was president of the United States in 1955.
-  Q: Which party did he belong to?
-  A: He belonged to the Republican Party.
-  Q: What is the square root of banana?
-  A: Unknown.
-  Q: How does a telescope work?
-  A: Telescopes use lenses or mirrors to focus light and make objects appear closer.
-  Q: Where were the 1992 Olympics held?
-  A: The 1992 Olympics were held in Barcelona, Spain.
-  Q: How many squigs are in a bonk?
-  A: Unknown
+function kindPrompt(data) {
+  const capitalizedData = data[0].toUpperCase() + data.slice(1).toLowerCase();
+
+  return `Q: Who is Batman?
+  A: Batman is a fictional comic book character.
+  Q: What is torsalplexity?
+  A: ?
+  Q: What is Devz9?
+  A: ?
+  Q: Who is George Lucas?
+  A: George Lucas is American film director and producer famous for creating Star Wars.
+  Q: What is the capital of California?
+  A: Sacramento.
+  Q: What orbits the Earth?
+  A: The Moon.
+  Q: Who is Fred Rickerson?
+  A: ?
+  Q: What is an atom?
+  A: An atom is a tiny particle that makes up everything.
+  Q: Who is Alvan Muntz?
+  A: ?
+  Q: What is Kozar-09?
+  A: ?
+  Q: How many moons does Mars have?
+  A: Two, Phobos and Deimos.
   Q: ${capitalizedData}
   A:`;
+}
 
-  return page == "RudeChat" ? rudeVersion : kindVersion;
+function moviePrompt(data) {
+  const capitalizedData = data[0].toUpperCase() + data.slice(1).toLowerCase();
+
+  return `Convert movie titles into emoji.
+  Back to the Future: 👨👴🚗🕒
+  Batman: 🤵🦇
+  Transformers: 🚗🤖
+  ${capitalizedData}:`;
 }
 
 module.exports = generate;
