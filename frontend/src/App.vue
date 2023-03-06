@@ -51,19 +51,19 @@ export default defineComponent({
     ChatSheet,
   },
   data: () => ({
-    title: "예의바른 버전",
+    title: "친절한 AI봇",
     chatId: "KindChat",
     links: [
       {
-        name: "예의바른 버전",
+        name: "친절한 AI봇",
         id: "KindChat",
       },
       {
-        name: "4가지없는 버전",
+        name: "4가지 없는 AI봇",
         id: "RudeChat",
       },
       {
-        name: "이모티콘으로 대답하는 버전",
+        name: "이모티콘 AI뽓",
         id: "EmojiChat",
       },
     ],
