@@ -9,25 +9,7 @@
       @keyup.enter="sendChat"
     ></v-text-field>
     <v-sheet class="mb-2 bg-teal-lighten-4 talk-bg d-flex flex-column-reverse">
-      <div
-        class="mb-2"
-        v-if="chatId == 'KindChat'"
-        v-for="data in kindChatList"
-      >
-        {{ data }}
-      </div>
-      <div
-        class="mb-2"
-        v-if="chatId == 'RudeChat'"
-        v-for="data in rudeChatList"
-      >
-        {{ data }}
-      </div>
-      <div
-        class="mb-2"
-        v-if="chatId == 'EmojiChat'"
-        v-for="data in emojiChatList"
-      >
+      <div class="mb-2" v-for="data in showChatList">
         {{ data }}
       </div>
     </v-sheet>
@@ -37,39 +19,44 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+type listType = {
+  [index: string]: Array<string>;
+  KindChat: Array<string>;
+  RudeChat: Array<string>;
+  EmojiChat: Array<string>;
+};
+
+let chatList: listType = {
+  KindChat: [],
+  RudeChat: [],
+  EmojiChat: [],
+};
+
 export default defineComponent({
   name: "ChatSheet",
   props: {
-    chatId: String,
+    chatId: { type: String, required: true },
   },
   data() {
     return {
-      kindChatList: [] as Array<string>,
-      rudeChatList: [] as Array<string>,
-      emojiChatList: [] as Array<string>,
       inputText: "",
+      showChatList: new Array<string>(),
     };
+  },
+  watch: {
+    chatId() {
+      this.showChatList = chatList[this.chatId];
+    },
   },
   methods: {
     sendChat(): void {
-      if (this.chatId == "KindChat") {
-        this.kindChatList.unshift("You: " + this.inputText);
-      } else if (this.chatId == "RudeChat") {
-        this.rudeChatList.unshift("You: " + this.inputText);
-      } else if (this.chatId == "EmojiChat") {
-        this.emojiChatList.unshift("You: " + this.inputText);
-      }
+      this.showChatList = chatList[this.chatId];
+      this.showChatList.unshift("You: " + this.inputText);
       try {
         this.$http
           .post("/api/generate", { name: this.chatId, data: this.inputText })
           .then((res) => {
-            if (this.chatId == "KindChat") {
-              this.kindChatList.unshift("AI:" + res.data.result);
-            } else if (this.chatId == "RudeChat") {
-              this.rudeChatList.unshift("AI:" + res.data.result);
-            } else if (this.chatId == "EmojiChat") {
-              this.emojiChatList.unshift("AI:" + res.data.result);
-            }
+            this.showChatList.unshift("AI:" + res.data.result);
           });
         this.inputText = "";
       } catch (error) {
