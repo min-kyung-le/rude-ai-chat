@@ -9,26 +9,34 @@
       @keyup.enter="sendChat"
     ></v-text-field>
     <v-sheet class="mb-2 bg-teal-lighten-4 talk-bg d-flex flex-column-reverse">
-      <div class="mb-2" v-for="aiText in aiTexts">{{ aiText }}</div>
+      <div class="mb-2" v-for="data in showChat">{{ data }}</div>
     </v-sheet>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
 export default defineComponent({
   name: "KindChat",
   data() {
     return {
+      showChat: [] as Array<String>,
       inputText: "",
-      aiTexts: ["1블라블라~", "2블라블라~", "3블라블라~"],
     };
   },
   methods: {
-    sendChat() {
-      console.log(this.inputText);
-      this.inputText = "";
+    sendChat(): void {
+      this.showChat.unshift(this.inputText);
+      try {
+        this.$http
+          .post("/api/generate", { name: "KindChat", data: this.inputText })
+          .then((res) => {
+            this.showChat.unshift(res.data.result);
+          });
+        this.inputText = "";
+      } catch (error) {
+        console.error("error", error);
+      }
     },
   },
 });

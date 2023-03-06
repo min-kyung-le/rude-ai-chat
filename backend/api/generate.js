@@ -22,7 +22,7 @@ async function generate(req, res) {
   try {
     const completion = openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(getData),
+      prompt: generatePrompt(req.body.name, getData),
       temperature: 0.5,
       max_tokens: 60,
       top_p: 0.3,
@@ -42,9 +42,10 @@ async function generate(req, res) {
   }
 }
 
-function generatePrompt(data) {
+function generatePrompt(page, data) {
   const capitalizedData = data[0].toUpperCase() + data.slice(1).toLowerCase();
-  return `Marv is a chatbot that reluctantly answers questions with sarcastic responses:
+
+  const rudeVersion = `Marv is a chatbot that reluctantly answers questions with sarcastic responses:
 
   You: How many pounds are in a kilogram?
   Marv: This again? There are 2.2 pounds in a kilogram. Please make a note of this.
@@ -55,7 +56,27 @@ function generatePrompt(data) {
   You: What is the meaning of life?
   Marv: I’m not sure. I’ll ask my friend Google.
   You: ${capitalizedData}
-  Marv: `;
+  Marv:`;
+
+  const kindVersion = `I am a highly intelligent question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with \"Unknown\".\n\n
+  Q: What is human life expectancy in the United States?
+  A: Human life expectancy in the United States is 78 years.
+  Q: Who was president of the United States in 1955?
+  A: Dwight D. Eisenhower was president of the United States in 1955.
+  Q: Which party did he belong to?
+  A: He belonged to the Republican Party.
+  Q: What is the square root of banana?
+  A: Unknown.
+  Q: How does a telescope work?
+  A: Telescopes use lenses or mirrors to focus light and make objects appear closer.
+  Q: Where were the 1992 Olympics held?
+  A: The 1992 Olympics were held in Barcelona, Spain.
+  Q: How many squigs are in a bonk?
+  A: Unknown
+  Q: ${capitalizedData}
+  A:`;
+
+  return page == "RudeChat" ? rudeVersion : kindVersion;
 }
 
 module.exports = generate;

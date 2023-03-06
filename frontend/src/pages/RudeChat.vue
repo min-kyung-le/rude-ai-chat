@@ -29,7 +29,7 @@ export default defineComponent({
       this.showChat.unshift(this.inputText);
       try {
         this.$http
-          .post("/api/generate", { data: this.inputText })
+          .post("/api/generate", { name: "RudeChat", data: this.inputText })
           .then((res) => {
             this.showChat.unshift(res.data.result);
           });
