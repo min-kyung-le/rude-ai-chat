@@ -63,7 +63,7 @@ export default defineComponent({
         id: "RudeChat",
       },
       {
-        name: "이모티콘 AI뽓",
+        name: "이모티콘 AI봇",
         id: "EmojiChat",
       },
     ],
