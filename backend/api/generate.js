@@ -41,10 +41,10 @@ async function generate(req, res) {
         frequency_penalty: 0.0,
         presence_penalty: 0.0,
       });
-    } else if (getName == "MovieChat") {
+    } else if (getName == "EmojiChat") {
       completion = openai.createCompletion({
         model: "text-davinci-003",
-        prompt: moviePrompt(getData),
+        prompt: emojiPrompt(getData),
         temperature: 0.8,
         max_tokens: 60,
         top_p: 1.0,
@@ -113,7 +113,7 @@ function kindPrompt(data) {
   A:`;
 }
 
-function moviePrompt(data) {
+function emojiPrompt(data) {
   const capitalizedData = data[0].toUpperCase() + data.slice(1).toLowerCase();
 
   return `Convert movie titles into emoji.

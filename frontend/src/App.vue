@@ -63,8 +63,8 @@ export default defineComponent({
         id: "RudeChat",
       },
       {
-        name: "영화제목을 이모티콘으로",
-        id: "MovieChat",
+        name: "이모티콘으로 대답하는 버전",
+        id: "EmojiChat",
       },
     ],
   }),
