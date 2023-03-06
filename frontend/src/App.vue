@@ -44,16 +44,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import RudeChat from "@/pages/RudeChat.vue";
-import KindChat from "@/pages/KindChat.vue";
-import MovieChat from "@/pages/MovieChat.vue";
 import ChatSheet from "@/pages/ChatSheet.vue";
 
 export default defineComponent({
   components: {
-    RudeChat,
-    KindChat,
-    MovieChat,
     ChatSheet,
   },
   data: () => ({
