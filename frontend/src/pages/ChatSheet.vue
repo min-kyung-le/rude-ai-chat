@@ -56,7 +56,7 @@ export default defineComponent({
         this.kindChatList.unshift("You: " + this.inputText);
       } else if (this.chatId == "RudeChat") {
         this.rudeChatList.unshift("You: " + this.inputText);
-      } else if (this.chatId == "MovieChat") {
+      } else if (this.chatId == "EmojiChat") {
         this.emojiChatList.unshift("You: " + this.inputText);
       }
       try {
@@ -67,7 +67,7 @@ export default defineComponent({
               this.kindChatList.unshift("AI:" + res.data.result);
             } else if (this.chatId == "RudeChat") {
               this.rudeChatList.unshift("AI:" + res.data.result);
-            } else if (this.chatId == "MovieChat") {
+            } else if (this.chatId == "EmojiChat") {
               this.emojiChatList.unshift("AI:" + res.data.result);
             }
           });
