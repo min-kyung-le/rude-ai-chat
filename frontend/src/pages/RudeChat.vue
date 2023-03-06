@@ -31,7 +31,6 @@ export default defineComponent({
         this.$http
           .post("/api/generate", { data: this.inputText })
           .then((res) => {
-            console.log("returnData", res.data.result);
             this.showChat.unshift(res.data.result);
           });
         this.inputText = "";
