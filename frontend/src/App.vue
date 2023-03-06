@@ -33,7 +33,7 @@
 
           <v-col>
             <v-sheet class="bg-teal-lighten-4 chat-sheet" rounded="lg">
-              <component :is="componentIs" />
+              <ChatSheet :chatId="chatId" />
             </v-sheet>
           </v-col>
         </v-row>
@@ -47,16 +47,18 @@ import { defineComponent } from "vue";
 import RudeChat from "@/pages/RudeChat.vue";
 import KindChat from "@/pages/KindChat.vue";
 import MovieChat from "@/pages/MovieChat.vue";
+import ChatSheet from "@/pages/ChatSheet.vue";
 
 export default defineComponent({
   components: {
     RudeChat,
     KindChat,
     MovieChat,
+    ChatSheet,
   },
   data: () => ({
     title: "예의바른 버전",
-    componentIs: "KindChat",
+    chatId: "KindChat",
     links: [
       {
         name: "예의바른 버전",
@@ -75,7 +77,7 @@ export default defineComponent({
   methods: {
     setPage(obj: { name: string; id: string }): void {
       this.title = obj.name;
-      this.componentIs = obj.id;
+      this.chatId = obj.id;
     },
   },
 });

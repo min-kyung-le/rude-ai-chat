@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-3 pb-11 d-flex flex-column-reverse chat-div">
+  <div class="pa-3 pb-11 d-flex flex-column-reverse chat-div overflow-y-hidden">
     <v-text-field
       class="chat-text"
       label=""
@@ -18,6 +18,9 @@
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "KindChat",
+  props: {
+    chatId: String,
+  },
   data() {
     return {
       showChat: [] as Array<String>,
@@ -29,7 +32,7 @@ export default defineComponent({
       this.showChat.unshift("You: " + this.inputText);
       try {
         this.$http
-          .post("/api/generate", { name: "KindChat", data: this.inputText })
+          .post("/api/generate", { name: this.chatId, data: this.inputText })
           .then((res) => {
             this.showChat.unshift("AI:" + res.data.result);
           });
