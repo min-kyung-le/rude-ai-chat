@@ -49,7 +49,7 @@ export default defineComponent({
     },
   },
   methods: {
-    sendChat(): void {
+    sendChat() {
       this.showChatList = chatList[this.chatId];
       this.showChatList.unshift("You: " + this.inputText);
       try {
