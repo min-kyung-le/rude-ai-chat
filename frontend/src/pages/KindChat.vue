@@ -41,15 +41,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.talk-bg {
-  min-height: 200px;
-}
-.chat-div {
-  height: 500px;
-}
-.chat-text {
-  max-height: 10px;
-}
-</style>

@@ -23,14 +23,16 @@
                   @click="setPage(link)"
                   link
                 >
-                  <v-list-item-title> {{ link.name }} </v-list-item-title>
+                  <v-list-item-title class="text-body-2">
+                    {{ link.name }}
+                  </v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-sheet>
           </v-col>
 
           <v-col>
-            <v-sheet class="bg-teal-lighten-4" min-height="70vh" rounded="lg">
+            <v-sheet class="bg-teal-lighten-4 chat-sheet" rounded="lg">
               <component :is="componentIs" />
             </v-sheet>
           </v-col>
