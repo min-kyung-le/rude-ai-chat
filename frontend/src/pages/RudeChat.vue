@@ -26,13 +26,13 @@ export default defineComponent({
   },
   methods: {
     sendChat(): void {
-      this.showChat.push(this.inputText);
+      this.showChat.unshift(this.inputText);
       try {
         this.$http
           .post("/api/generate", { data: this.inputText })
           .then((res) => {
             console.log("returnData", res.data.result);
-            this.showChat.push(res.data.result);
+            this.showChat.unshift(res.data.result);
           });
         this.inputText = "";
       } catch (error) {
