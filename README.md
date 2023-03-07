@@ -7,14 +7,14 @@
 ### Node 종속성 설치
 backend 
 
-```Linux
+```Bash
 cd backend
 npm install
 ```
 
 frontend
 
-```Linux
+```Bash
 cd frontend
 npm install
 ```
