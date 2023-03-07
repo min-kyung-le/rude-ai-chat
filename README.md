@@ -31,3 +31,40 @@ backend > .env 파일을 생성하여 API KEY를 넣어줘야 합니다.
 ```OPENAI_API_KEY="YOUR API KEY"```
 
 
+### Test
+
+##### backend와 frontend 서버를 동시에 켜서 진행하는 방법입니다.
+
+```Bash
+cd backend
+npm start
+```
+
+```Bash
+cd frontend
+npm run dev
+```
+
+www.localhost:3000 으로 접속하면 테스트 가능합니다.
+
+
+##### backend 서버만 켜서 진행하는 방법
+
+먼저, frontend 파일들을 빌드합니다.
+
+```Bash
+cd frontend
+npm run build
+```
+
+빌드 위치는 frontend > vite.config.ts 에서 확인 가능합니다.
+
+```Typescript
+ build: {
+    outDir: path.resolve("../backend/public"),
+  },
+```
+
+build가 끝난 뒤, 해당 폴더 위치로 가면 배포 파일들을 확인할 수 있습니다.
+
+해당 위치에 정상적으로 배포 파일들이 저장되었다면 frontend 서버를 실행시키지 않고 backend 서버만 실행시켜도 정상적으로 접속가능합니다.
