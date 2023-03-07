@@ -6,6 +6,10 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+let RudeChat = "RudeChat",
+  KindChat = "KindChat",
+  EmojiChat = "EmojiChat";
+
 async function generate(req, res) {
   if (!configuration.apiKey) {
     console.log(
@@ -19,10 +23,10 @@ async function generate(req, res) {
     console.log("Please enter a valid getData");
     return;
   }
-  let completion;
   try {
-    if (getName == "RudeChat") {
-      completion = openai.createCompletion({
+    let setOption;
+    if (getName == RudeChat) {
+      setOption = {
         model: "text-davinci-003",
         prompt: rudePrompt(getData),
         temperature: 0.5,
@@ -30,9 +34,9 @@ async function generate(req, res) {
         top_p: 0.3,
         frequency_penalty: 0.5,
         presence_penalty: 0,
-      });
-    } else if (getName == "KindChat") {
-      completion = openai.createCompletion({
+      };
+    } else if (getName == KindChat) {
+      setOption = {
         model: "text-davinci-003",
         prompt: kindPrompt(getData),
         temperature: 0,
@@ -40,9 +44,9 @@ async function generate(req, res) {
         top_p: 1.0,
         frequency_penalty: 0.0,
         presence_penalty: 0.0,
-      });
-    } else if (getName == "EmojiChat") {
-      completion = openai.createCompletion({
+      };
+    } else if (getName == EmojiChat) {
+      setOption = {
         model: "text-davinci-003",
         prompt: emojiPrompt(getData),
         temperature: 0.8,
@@ -51,8 +55,9 @@ async function generate(req, res) {
         frequency_penalty: 0.0,
         presence_penalty: 0.0,
         stop: ["\n"],
-      });
+      };
     }
+    let completion = openai.createCompletion(setOption);
 
     return { result: (await completion).data.choices[0].text };
   } catch (error) {

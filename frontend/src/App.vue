@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ChatSheet from "@/pages/ChatSheet.vue";
+import ChatSheet from "@/components/ChatSheet.vue";
 
 export default defineComponent({
   components: {
