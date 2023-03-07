@@ -46,25 +46,29 @@
 import { defineComponent } from "vue";
 import ChatSheet from "@/components/ChatSheet.vue";
 
+let RudeChat = "RudeChat",
+  KindChat = "KindChat",
+  EmojiChat = "EmojiChat";
+
 export default defineComponent({
   components: {
     ChatSheet,
   },
   data: () => ({
     title: "친절한 AI봇",
-    chatId: "KindChat",
+    chatId: KindChat,
     links: [
       {
         name: "친절한 AI봇",
-        id: "KindChat",
+        id: KindChat,
       },
       {
         name: "4가지 없는 AI봇",
-        id: "RudeChat",
+        id: RudeChat,
       },
       {
         name: "이모티콘 AI봇",
-        id: "EmojiChat",
+        id: EmojiChat,
       },
     ],
   }),
