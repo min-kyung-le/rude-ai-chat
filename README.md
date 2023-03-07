@@ -48,6 +48,8 @@ npm run dev
 www.localhost:3000 으로 접속하면 테스트 가능합니다.
 
 
+
+
 ##### backend 서버만 켜서 진행하는 방법
 
 먼저, frontend 파일들을 빌드합니다.
