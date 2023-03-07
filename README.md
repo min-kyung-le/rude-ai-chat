@@ -4,13 +4,29 @@
 
 ###### 친절한 AI봇, 4가지 없는 AI봇, 이모티콘 AI봇이 있습니다.
 
+### Node 종속성 설치
+backend 
+
+```Linux
+cd backend
+npm install
+```
+
+frontend
+
+```Linux
+cd frontend
+npm install
+```
+
+
 ### Open AI API KEY
-실제 테스트하기 위해선 backend > .env 파일을 생성하여 API KEY를 넣어줘야 합니다.
+backend > .env 파일을 생성하여 API KEY를 넣어줘야 합니다.
 
 링크 : https://platform.openai.com/docs/quickstart/add-your-api-key
 
 위의 링크에서 API KEY 를 발급받은 후 .env 파일에 아래와 같이 추가해주세요.
 
-  OPENAI_API_KEY=
+```OPENAI_API_KEY="YOUR API KEY"```
 
 
