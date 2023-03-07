@@ -22,7 +22,7 @@ npm install
 
 
 ### Open AI API KEY
-###### backend > .env 파일을 생성하여 API KEY를 넣어줘야 합니다.
+backend > .env 파일을 생성하여 API KEY를 넣어줘야 합니다.
 
 링크 : https://platform.openai.com/docs/quickstart/add-your-api-key
 
