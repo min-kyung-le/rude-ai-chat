@@ -45,7 +45,6 @@ cd frontend
 npm run dev
 ```
 
-www.localhost:3000 으로 접속하면 테스트 가능합니다.
 
 
 
