@@ -1,7 +1,7 @@
 # OpenAI API 를 이용한 AI 채팅 서비스
 
 ###### Open AI에서 제공하는 API를 이용한 AI 채팅 서비스입니다.
-<img width="1000" src="https://user-images.githubusercontent.com/82563539/223348110-522e06dd-15ca-49d3-87b5-611a54a4210e.png"/>
+<img width="1000" src="https://user-images.githubusercontent.com/82563539/223348379-82e6525c-509b-4ffb-b87f-e844d9f6c221.gif"/>
 
 ###### 친절한 AI봇, 4가지 없는 AI봇, 이모티콘 AI봇이 있습니다.
 
