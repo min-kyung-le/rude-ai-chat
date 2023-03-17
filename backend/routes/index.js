@@ -3,7 +3,7 @@ var router = express.Router();
 var generate = require("../api/generate");
 
 router.post("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "../public", "index.html"));
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 router.post("/api/generate", async function (req, res) {
